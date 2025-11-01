@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projekt Galleri | Nordic Home</title>
+    <link rel="stylesheet" href="css/project.css" />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header class="project-header">
+      <a href="index.html" class="back-btn">← Tilbage</a>
+      <h1 id="project-title">Projekt Titel</h1>
+    </header>
+
+    <!-- Project Details -->
+    <section class="project-details">
+      <div class="container">
+        <h3>Om Projektet</h3>
+        <p>
+          Dette projekt fremhæver brugen af naturlige materialer, varme nuancer og
+          rummelige layouts, der bringer ro og balance ind i hjemmet. 
+          Vores designteam har arbejdet tæt med klienten for at skabe et
+          tidløst resultat med moderne funktionalitet.
+        </p>
+      </div>
+    </section>
+
+    <!-- Project Gallery -->
+    <section class="project-gallery" id="project-gallery"></section>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+      <span class="close-btn" id="close-lightbox">&times;</span>
+      <img class="lightbox-img" id="lightbox-img" src="" alt="Projekt Billede" />
+    </div>
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const project = params.get("project");
+
+      const data = {
+        bedroom: {
+          title: "Indretningsprojekt",
+          images: [
+            "images/interior1/interior1.jpg",
+            "images/interior1/interior2.jpg",
+            "images/interior1/interior3.jpg",
+            "images/interior1/interior4.jpg",
+          ],
+        },
+        kitchen: {
+          title: "Indretningsprojekt",
+          images: [
+            "images/interior2/interior1.jpg",
+            "images/interior2/interior2.jpg",
+            "images/interior2/interior3.jpg",
+            "images/interior2/interior4.jpg",
+          ],
+        },
+        livingroom: {
+          title: "Indretningsprojekt",
+          images: [
+            "images/interior3/interior1.jpg",
+            "images/interior3/interior2.jpg",
+            "images/interior3/interior3.jpg",
+            "images/interior3/interior4.jpg",
+          ],
+        },
+        house4: {
+          title: "Indretningsprojekt",
+          images: [
+            "images/interior4/interior1.jpg",
+            "images/interior4/interior2.jpg",
+            "images/interior4/interior3.jpg",
+            "images/interior4/interior4.jpg",
+          ],
+        },
+      };
+
+      if (!project || !data[project]) {
+        alert("Projekt ikke fundet!");
+        window.location.href = "index.html";
+      }
+
+      const projectData = data[project];
+      document.getElementById("project-title").textContent = projectData.title;
+
+      const gallery = document.getElementById("project-gallery");
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightbox-img");
+      const closeLightbox = document.getElementById("close-lightbox");
+
+      projectData.images.forEach((img) => {
+        const link = document.createElement("div");
+        link.classList.add("gallery-link");
+
+        const image = document.createElement("img");
+        image.src = img;
+        image.alt = projectData.title;
+        image.classList.add("project-img");
+
+        const overlay = document.createElement("div");
+        overlay.classList.add("overlay");
+        overlay.textContent = "Se Billede";
+
+        link.appendChild(image);
+        link.appendChild(overlay);
+        gallery.appendChild(link);
+
+        // Open lightbox
+        link.addEventListener("click", () => {
+          lightbox.style.display = "flex";
+          lightboxImg.src = img;
+        });
+      });
+
+      closeLightbox.addEventListener("click", () => {
+        lightbox.style.display = "none";
+      });
+
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) lightbox.style.display = "none";
+      });
+    </script>
+  </body>
+</html>

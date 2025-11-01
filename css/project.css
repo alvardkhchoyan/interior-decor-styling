@@ -1,0 +1,247 @@
+:root {
+  --nude-bg: #f8f3ef;
+  --nude-light: #fffaf7;
+  --text-color: #4a403a;
+  --accent: #c6a994;
+  --overlay-bg: rgba(198, 169, 148, 0.7);
+  --shadow-light: rgba(0,0,0,0.08);
+  --shadow-dark: rgba(0,0,0,0.2);
+}
+
+/* GLOBAL */
+body {
+  margin: 0;
+  font-family: 'Helvetica Neue', sans-serif;
+  background: var(--nude-bg);
+  color: var(--text-color);
+  scroll-behavior: smooth;
+}
+
+/* HEADER */
+.project-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  background: var(--nude-light);
+  box-shadow: 0 4px 12px var(--shadow-light);
+  padding: 1rem 2rem;
+  z-index: 100;
+}
+
+.project-header h1 {
+  flex: 1;
+  text-align: center;
+  color: var(--accent);
+  font-size: 2rem;
+  margin: 0;
+  font-weight: 600;
+}
+
+.back-btn {
+  position: absolute;
+  left: 2rem;
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.2s ease;
+}
+
+.back-btn:hover {
+  color: var(--accent);
+}
+
+/* HERO */
+.project-hero {
+  background: var(--nude-light);
+  padding: 5rem 2rem 3rem;
+  text-align: center;
+  box-shadow: 0 4px 8px var(--shadow-light);
+}
+
+.project-hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.project-hero h2 {
+  color: var(--accent);
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+
+.project-hero p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-color);
+}
+
+/* DETAILS SECTION */
+.project-details {
+  background: var(--nude-bg);
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.project-details .container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.project-details h3 {
+  color: var(--accent);
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.project-details p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text-color);
+}
+
+/* GALLERY */
+.project-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 7rem 3rem;
+}
+
+.gallery-link {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px var(--shadow-light);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-link:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px var(--shadow-dark);
+}
+
+.gallery-link img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.gallery-link:hover img {
+  transform: scale(1.1);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--overlay-bg);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.gallery-link:hover .overlay {
+  opacity: 1;
+}
+
+/* LIGHTBOX */
+.lightbox {
+  position: fixed;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.8);
+  z-index: 999;
+}
+
+.lightbox-img {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px var(--shadow-dark);
+}
+
+.close-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* FOOTER */
+.footer {
+  background: var(--nude-light);
+  color: var(--text-color);
+  /* padding: 2rem 0; */
+  font-size: 0.95rem;
+  text-align: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.footer .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+}
+
+.footer-links a {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .project-hero h2 {
+    font-size: 1.8rem;
+  }
+  .project-gallery {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .project-header h1 {
+    font-size: 1.6rem;
+  }
+  .project-hero {
+    padding: 3rem 1.5rem;
+  }
+  .project-details {
+    padding: 2rem 1.5rem;
+  }
+  .project-gallery {
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+  }
+}
